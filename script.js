@@ -63,14 +63,12 @@ function Control(id, title, standard, reqId, reqRef, description, questions, can
     anInput.type = "checkbox";
     if (this.hidden) {
       anInput.setAttribute("checked", "true");
-    } else {
-      anInput.setAttribute("checked", "false");
     }
     anInput.addEventListener("change", (e) => {
-      if (!this.hidden) {
-        this.hidden = true;
-      } else {
+      if (this.hidden) {
         this.hidden = false;
+      } else {
+        this.hidden = true;
       }
     });
     aLabel.appendChild(anInput);
@@ -166,7 +164,6 @@ function prefillLibrary() {
 // Inject the control library in the DOM
 /////////////////////////////////////////
 function addLibraryToPage() {
-  //const cardContainer = document.getElementsByClassName("cardContainer");
   for (let i = 0; i < myLibrary.length; i++) {
     document.getElementsByClassName("cardContainer")[0].appendChild(myLibrary[i].card());
   }
