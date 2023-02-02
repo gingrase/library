@@ -1,7 +1,7 @@
 ////////////////////////////////
 // "Control" object constructor
 ////////////////////////////////
-function Control(id, title, standard, reqId, reqRef, description, questions, canNA, canEvidenceFile, canEvidenceText, extRef, tasks, hidden) {
+function Control(id, title, standard, reqId, reqRef, description, questions, extRef, tasks, hidden) {
   this.id = id;
   this.title = title;
   this.standard = standard;
@@ -9,9 +9,6 @@ function Control(id, title, standard, reqId, reqRef, description, questions, can
   this.reqRef = reqRef;
   this.description = description;
   this.questions = questions;
-  this.canNA = canNA;
-  this.canEvidenceFile = canEvidenceFile;
-  this.canEvidenceText = canEvidenceText;
   this.extRef = extRef;
   this.tasks = tasks;
   this.hidden = hidden;
@@ -26,9 +23,6 @@ function Control(id, title, standard, reqId, reqRef, description, questions, can
       "References: "                  + this.reqRef           + " ; " +
       "Description: "                 + this.description      + " ; " +
       "Questions: "                   + this.questions        + " ; " +
-      "Control can be NA: "           + this.canNA            + " ; " +
-      "Evidence can be File: "        + this.canEvidenceFile  + " ; " +
-      "Evidence can be text: "        + this.canEvidenceText  + " ; " +
       "External references: "         + this.extRef           + " ; " +
       "Tasks associated: "            + this.tasks            + " ; " +
       "Control should stay hidden: "  + this.hidden
@@ -119,9 +113,6 @@ function prefillLibrary() {
     "",
     "Control summary description (more or less 30 words)",
     "",
-    false,
-    false,
-    false,
     "",
     "",
     true
@@ -135,9 +126,6 @@ function prefillLibrary() {
     "",
     "Deploy, document, train users and audit a 2FA on both bank (TD and Desjardins) account accesses. This should be done for every set of credentials allowing access (even if read-only) to our accounts.",
     "",
-    false,
-    false,
-    false,
     "",
     "",
     false
@@ -151,9 +139,6 @@ function prefillLibrary() {
     "",
     "Firewall rules should be reviewed regularly to remove rules unused anymore, avoid contradiction between rules, make sure no rule is not commented (identifying the owner), VPN permissions are not to permissive and admin accesses are secured. This should be done for every firewall and rules should analyzed globally.",
     "",
-    false,
-    false,
-    false,
     "",
     "",
     false
@@ -198,9 +183,6 @@ save_control_btn.addEventListener("click", (e) => {
     document.getElementById("requirementReference").value,
     document.getElementById("requirementDescription").value,
     document.getElementById("questions").value,
-    document.getElementById("canNA").checked,
-    document.getElementById("evidenceFile").checked,
-    document.getElementById("evidenceText").checked,
     document.getElementById("externalLinks").value,
     document.getElementById("associatedTasks").value,
     document.getElementById("hide").checked
@@ -223,9 +205,6 @@ function editControl (id) {
   document.getElementById("editRequirementReference").value = controlToUpdate.reqRef;
   document.getElementById("editRequirementDescription").value = controlToUpdate.description;
   document.getElementById("editQuestions").value = controlToUpdate.questions;
-  document.getElementById("editCanNA").checked = controlToUpdate.canNA;
-  document.getElementById("editEvidenceFile").checked = controlToUpdate.canEvidenceFile;
-  document.getElementById("editEvidenceText").checked = controlToUpdate.canEvidenceText;
   document.getElementById("editExternalLinks").value = controlToUpdate.extRef;
   document.getElementById("editAssociatedTasks").value = controlToUpdate.tasks;
   document.getElementById("editHide").checked = controlToUpdate.hidden;
@@ -249,9 +228,6 @@ update_control_btn.addEventListener("click", (e) => {
   controlToUpdate.reqRef = document.getElementById("editRequirementReference").value;
   controlToUpdate.description = document.getElementById("editRequirementDescription").value;
   controlToUpdate.questions = document.getElementById("editQuestions").value;
-  controlToUpdate.canNA = document.getElementById("editCanNA").checked;
-  controlToUpdate.canEvidenceFile = document.getElementById("editEvidenceFile").checked;
-  controlToUpdate.canEvidenceText = document.getElementById("editEvidenceText").checked;
   controlToUpdate.extRef = document.getElementById("editExternalLinks").value;
   controlToUpdate.tasks = document.getElementById("editAssociatedTasks").value;
   controlToUpdate.hidden = document.getElementById("editHide").checked;
